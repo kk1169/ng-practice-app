@@ -1,0 +1,29 @@
+<div class="container mt-5">
+  <div class="card">
+    <h5 class="card-header">Categories</h5>
+    <div class="card-body">
+      <app-table class="component-wrapper" [loading]="loading" [pagination]="true" [filterColumn]="['name']"
+        [search]="true" [tableHead]="theadTemplate" [tableBody]="tbodyTemplate" [data]="users" [pageSize]="7">
+        <ng-template let-columns #theadTemplate>
+          <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>EMAIL</th>
+            <th>ACTION</th>
+          </tr>
+        </ng-template>
+        <ng-template let-user #tbodyTemplate>
+          <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.slug}}</td>
+            <td>
+              <button class="btn btn-sm btn-success me-1">Edit</button>
+              <button class="btn btn-sm btn-danger">Delete</button>
+            </td>
+          </tr>
+        </ng-template>
+      </app-table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+.app-table {
+  position: relative;
+
+  .app-table-loader {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: rgba($color: #000000, $alpha: 0.6);
+  }
+}

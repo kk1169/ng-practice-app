@@ -1,0 +1,41 @@
+<div class="app-table">
+  @if (search) {
+  <div class="mb-3 row">
+    <label for="" class="col-xs-3 col-sm-auto col-form-label">Search:</label>
+    <div class="col-xs-3 col-sm-auto">
+      <input class="form-control" type="text" [(ngModel)]="searchTerm" (keyup)="refreshTable()" />
+    </div>
+  </div>
+  }
+
+  <table class="table table-bordered table-striped mb-0">
+    <thead class="table-light">
+      <ng-container [ngTemplateOutlet]="tableHead" [ngTemplateOutletContext]="{$implicit:'Guest'}"></ng-container>
+    </thead>
+    <tbody>
+      @for (item of tableData; track $index) {
+      <ng-container [ngTemplateOutlet]="tableBody" [ngTemplateOutletContext]="{$implicit:item}"></ng-container>
+      }
+    </tbody>
+  </table>
+
+  @if (pagination) {
+  <div class="row mt-3">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination mb-0">
+        @for (item of [].constructor(paginationStatus.totalPages); track $index) {
+        <li class="page-item" [class]="{'active':paginationStatus.page === ($index+1)}" (click)="pageChange($index+1)">
+          <a class="page-link" href="#">{{$index+1}}</a>
+        </li>
+        }
+      </ul>
+    </nav>
+  </div>
+  }
+
+  @if (loading) {
+  <div class="app-table-loader">
+    <i class="bx bx-loader bx-spin bx-lg"></i>
+  </div>
+  }
+</div>
