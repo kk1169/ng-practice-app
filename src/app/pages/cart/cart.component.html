@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+
+<div class="container my-4">
+  <table class="table app-table">
+    <thead>
+      <tr class="table-secondary">
+        <th scope="col">#</th>
+        <th scope="col">Image</th>
+        <th scope="col">Product Title</th>
+        <th scope="col">Price</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (product of cartProducts; track $index) {
+      <tr valign="middle">
+        <td>{{$index+1}}</td>
+        <td>
+          <img [src]="product.image" class="product-img" [alt]="product.title">
+        </td>
+        <td>{{product.title}}</td>
+        <td>${{product.price}}</td>
+        <td>
+          <button class="btn btn-sm btn-danger" (click)="removeFromCart(product)">Remove</button>
+        </td>
+      </tr>
+      }@empty {
+      <tr>
+        <td colspan="5" class="text-center">No Data</td>
+      </tr>
+      }
+    </tbody>
+    @if (cartProducts.length) {
+    <tfoot>
+      <tr valign="middle" class="table-secondary">
+        <td></td>
+        <td></td>
+        <th>Total</th>
+        <td colspan="2">${{totalPrice}}</td>
+      </tr>
+    </tfoot>
+    }
+  </table>
+</div>

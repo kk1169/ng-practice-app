@@ -83,12 +83,19 @@ export class TableComponent implements OnInit, OnChanges {
 
   matches(data: any) {
     let columns = Object.keys(data);
+    let found = false;
+
     for (let index = 0; index < columns.length; index++) {
       if (this.filterColumn.includes(columns[index])) {
-        return data[columns[index]]
-          .toLowerCase()
-          .includes(this.searchTerm.toLowerCase());
+        if (
+          data[columns[index]]
+            .toLowerCase()
+            .includes(this.searchTerm.toLowerCase())
+        ) {
+          found = true;
+        }
       }
     }
+    return found;
   }
 }

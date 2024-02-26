@@ -3,4 +3,24 @@
 @import "boxicons";
 body {
   font-family: "Roboto", sans-serif;
+  // overflow: hidden;
+}
+
+.app-products-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+  // height: calc(100vh - 68px);
+  // overflow-y: auto;
+
+  .app-product-card {
+    padding: 0.8rem;
+
+    .card-img-top {
+      min-height: 260px;
+      max-height: 260px;
+      object-fit: cover;
+      border: 1px soild var(--bs-border-color);
+    }
+  }
 }

@@ -1,0 +1,46 @@
+<div class="container my-5">
+  <form [formGroup]="developerForm" (submit)="onSubmit()">
+    <div class="mb-3">
+      <label class="form-label">You are:</label>
+      <select formArrayName="developer" class="form-select">
+        <option value="">Select</option>
+        <option value="Frontend Developer">Frontend Developer</option>
+        <option value="Backend Developer">Backend Developer</option>
+        <option value="Full Stack Developer">Full Stack Developer</option>
+      </select>
+    </div>
+
+    <h4 class="fs-5 fw-bold">Skills: <button (click)="addSkill()" type="button"
+        class="btn btn-sm btn-success d-inline-flex align-items-center"><i class='bx bx-plus-circle bx-sm'></i></button>
+    </h4>
+
+    <div class="flex mb-3" formArrayName="skills">
+      @for (skill of skills().controls; track skill; let i = $index) {
+      <div class="row mb-2" [formGroupName]="i">
+        <div class="col-sm-6">
+          <label class="form-label">Skill ({{i}})</label>
+          <select formControlName="skill" class="form-select">
+            <option value="">Select</option>
+            @for (skillItem of skillList; track $index) {
+            <option [value]="skillItem">{{skillItem}}</option>
+            }
+          </select>
+        </div>
+        <div class="col-sm-5">
+          <label class="form-label">Experience</label>
+          <input type="number" class="form-control" placeholder="Experience" formControlName="experience">
+        </div>
+        <div class="col-sm-1 d-inline-flex align-items-end">
+          <button (click)="removeSkill(i)" type="button"
+            class="btn btn-sm btn-danger d-inline-flex align-items-center"><i class='bx bx-minus bx-sm'></i></button>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="">
+      <button class="btn btn-success" type="submit">Save Changes</button>
+    </div>
+  </form>
+
+</div>

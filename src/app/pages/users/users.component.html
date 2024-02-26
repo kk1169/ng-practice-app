@@ -1,22 +1,25 @@
 <div class="container mt-5">
+  <button class="btn btn-success btn-block mb-3" (click)="openPDF()">Download PDF</button>
   <div class="card">
     <h5 class="card-header">Categories</h5>
-    <div class="card-body">
-      <app-table class="component-wrapper" [loading]="loading" [pagination]="true" [filterColumn]="['name']"
-        [search]="true" [tableHead]="theadTemplate" [tableBody]="tbodyTemplate" [data]="users" [pageSize]="7">
+    <div class="card-body" id="htmlData">
+      <app-table class="component-wrapper" [loading]="loading" [pagination]="true" [filterColumn]="['title']"
+        [search]="true" [tableHead]="theadTemplate" [tableBody]="tbodyTemplate" [data]="users" [pageSize]="10">
         <ng-template let-columns #theadTemplate>
           <tr>
             <th>ID</th>
-            <th>NAME</th>
-            <th>EMAIL</th>
+            <th>TITLE</th>
+            <th>CATEGORY</th>
+            <th>PRICE</th>
             <th>ACTION</th>
           </tr>
         </ng-template>
         <ng-template let-user #tbodyTemplate>
           <tr>
             <td>{{user.id}}</td>
-            <td>{{user.name}}</td>
-            <td>{{user.slug}}</td>
+            <td>{{user.title}}</td>
+            <td>{{user.category.name}}</td>
+            <td>{{user.price}}</td>
             <td>
               <button class="btn btn-sm btn-success me-1">Edit</button>
               <button class="btn btn-sm btn-danger">Delete</button>
